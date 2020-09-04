@@ -156,6 +156,13 @@ echo "====================="
 echo "== Oracle ready ====="
 echo "====================="
 
+# When building the image, we want to exit at this point.
+if [[ "$1" = "exit" ]]
+then
+    echo "Exiting as requested"
+    exit 0
+fi
+
 # Open a port to indicate the database is ready.
 # Keep listening so container does not exit.
 nc -k -l 4444 > /dev/null
