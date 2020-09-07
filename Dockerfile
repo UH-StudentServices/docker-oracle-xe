@@ -30,12 +30,13 @@ COPY ./scripts/*.sh ${ORACLE_BASE}/scripts/
 
 RUN chmod a+x ${ORACLE_BASE}/scripts/*.sh 
 
+# During image build, start Oracle once in order to pregenerate the oradata directory into the image.
+RUN ${ORACLE_BASE}/scripts/${RUN_FILE} exit
+
 # 1521: Oracle listener
 # 5500: Oracle Enterprise Manager (EM) Express listener.
 # 4444: Oracle ready indicator
 EXPOSE 1521 5500 4444
-
-VOLUME [ "${ORACLE_BASE}/oradata" ]
 
 HEALTHCHECK --interval=1m --start-period=2m --retries=10 \
   CMD "$ORACLE_BASE/scripts/$CHECK_DB_FILE"

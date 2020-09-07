@@ -25,6 +25,7 @@
 
 This is a fork from https://github.com/fuzziebrain/docker-oracle-xe with the following modifications:
 
+- Image contains the oradata directory, so containers will start up faster.
 - Supports user/schema creation via environment variables:
    - ORACLE_USER   
    - ORACLE_PASSWORD
@@ -69,7 +70,7 @@ docker build -t oracle-xe:18c .
 
 ## Run Container
 
-_Note first time will take a a while to run for as the `oracle-xe configure` script needs to complete_
+_Note first time will take a while to run for as the `oracle-xe configure` script needs to complete_
 
 ```bash
 docker run -d \
